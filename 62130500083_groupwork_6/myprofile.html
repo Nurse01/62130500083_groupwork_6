@@ -79,35 +79,48 @@
       </div>
       <div
         id="form"
-        class="container w-2/5 p-10 mx-auto mt-10 border rounded-lg"
+        class="container w-2/5 p-10 mx-auto my-10 border rounded-lg h-auto"
       >
         <form @submit.prevent="checkForm">
+
+          <!-- Check errors -->
+          <div v-if="errors" class="bg-red-500 text-white px-8 py-4 w-1/3 border rounded-lg m-2">
+              <ul>
+                <li v-for="error in errors" >{{error}}</li>
+              </ul>
+            </div>
           
           <div class="grid grid-cols-2 gap-4">
             <div class="flex flex-col">
-              <label for="fname" class="text-sm leading-7 text-gray-600"
+              <label for="firstname" class="text-sm leading-7 text-gray-600"
                 >First Name</label
               >
               <input
                 type="text"
-                id="fname"
-                v-model.trim="fname"
-                name="fname"
+                id="firstname"
+                v-model.trim="firstname"
+                name="firstname"
                 class="bg-gray-100 rounded px-4 py-2 mb-4 text-blue-900"
               />
             </div>
             <div class="flex flex-col">
-              <label for="lname" class="text-sm leading-7 text-gray-600"
+              <label for="lastname" class="text-sm leading-7 text-gray-600"
                 >Last Name</label
               >
               <input
                 type="text"
-                id="lname"
-                v-model.trim="lname"
-                name="lname"
+                id="lastname"
+                v-model.trim="lastname"
+                name="lastname"
                 class="bg-gray-100 rounded px-4 py-2 mb-4 text-blue-900"
               />
             </div>
+            <div class="grid grid-cols-3 gap-4 col-span-2">          
+            <div class="flex flex-col">
+              <label for="email" class="text-sm leading-7 text-gray-600">Email</label>
+              <input type="text" id="email" v-model="email" name="email" class="bg-gray-100 rounded px-4 py-2 mb-4 text-blue-900">
+          </div>
+
             <div class="flex flex-col">   
               <label class="text-sm leading-7 text-gray-600">Gender</label>
               <div class="flex flex-row pt-2 space-x-2">
@@ -115,22 +128,33 @@
                   <label for="Male" class="text-gray-600">Male</label>
                   <input type="radio" id="Female" v-model="gender" name="gender" value="f" class="bg-gray-100 rounded px-4 py-2 mb-4 ">
                   <label for="Female" class="text-gray-600">Female</label>
+              </div>  
               </div>
+              <div class="flex flex-col">
+                <label for="phone"class="text-sm leading-7 text-gray-600">Phone Number</label>
+                <input type="number" id="phone" v-model="phone" name="phone" class="bg-gray-100 rounded px-4 py-2 mb-4 text-blue-900">
+              </div>
+            </div>
+            <div class="flex flex-col col-span-2">
+              <label for="chosengroup"class="text-sm leading-7 text-gray-600">Group</label>
+              <select id="chosengroup" v-model="chosengroup" name="chosengroup" class="bg-gray-100 rounded px-4 py-2 mb-4 text-blue-900">
+              <option v-for="group in group_lists" :value="group.instructor">
+                  {{group.instructor}}
+              </option>
           </div>
-          <div class="flex flex-col col-span-2">
-            <label for="chosengroup"class="text-sm leading-7 text-gray-600">Group</label>
-            <select id="chosengroup" v-model="chosengroup" name="chosengroup" class="bg-gray-100 rounded px-4 py-2 mb-4 text-blue-900">
-            <option v-for="group in group_lists" :value="group.group_num">
-                {{group.instructor}}
-            </option>
-        </div>
-        </form>
-      </div>
+          <div class="col-span-2">
+            <input type="submit" value="submit" class="w-full px-8 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
+          </div>
+
+          </div>
+               
+      </form>
     </div>
 
     <!-- my main.js -->
 
-    <script src="profile.js"></script>
+    
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="profile.js"></script>
   </body>
 </html>
